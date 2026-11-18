@@ -1,0 +1,9 @@
+# Old URLs from the previous site -> new structure (301 = permanent)
+/industries/erp-acumatica-partners/   /industries/manufacturing-distribution/   301
+/industries/erp-acumatica-partners    /industries/manufacturing-distribution/   301
+/saas/                                /industries/saas/                         301
+/saas                                 /industries/saas/                         301
+/technology-consultants/              /industries/professional-services/        301
+/technology-consultants               /industries/professional-services/        301
+/professional-services/               /industries/professional-services/        301
+/professional-services                /industries/professional-services/        301
