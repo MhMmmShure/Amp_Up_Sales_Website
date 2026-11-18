@@ -13,7 +13,7 @@ export default {
   })}</script>`,
   body: `
 <section class="hero">
-  <div class="hero__media">${media("hero.jpg", "B2B sales and marketing team planning a campaign")}</div>
+  <div class="hero__media">${media("hero.jpg", "B2B sales and marketing team reviewing performance charts", "", true)}</div>
   <div class="container">
     <div class="hero__content">
       <span class="eyebrow">Your outsourced sales &amp; marketing team</span>
@@ -149,8 +149,8 @@ export default {
     </div>
     <div class="grid grid--3">
       <a class="post reveal" href="/insights/#outsourced-vs-full-time">${media("insight-1.jpg", "Leadership team meeting")}<div class="post__body"><span class="post__tag">Sales Leadership</span><h3>Outsourced GTM leadership vs. hiring a full-time sales leader</h3><p>When an outsourced leader makes more sense, and when it's time to hire.</p><span class="link-arrow">Read more ${icon("arrow")}</span></div></a>
-      <a class="post reveal" href="/insights/#website-not-converting">${media("insight-2.jpg", "Reviewing a B2B website on a laptop")}<div class="post__body"><span class="post__tag">Websites</span><h3>Why your website isn't converting the right buyers</h3><p>Messaging, service pages, proof points, FAQs and calls to action.</p><span class="link-arrow">Read more ${icon("arrow")}</span></div></a>
-      <a class="post reveal" href="/insights/#follow-up-breaks-down">${media("insight-3.jpg", "Sales team reviewing pipeline")}<div class="post__body"><span class="post__tag">Pipeline</span><h3>Why pipeline follow-up breaks down</h3><p>CRM visibility, task ownership and sales process accountability.</p><span class="link-arrow">Read more ${icon("arrow")}</span></div></a>
+      <a class="post reveal" href="/insights/#website-not-converting">${media("insight-4.jpg", "Reviewing B2B performance charts")}<div class="post__body"><span class="post__tag">Websites</span><h3>Why your website isn't converting the right buyers</h3><p>Messaging, service pages, proof points, FAQs and calls to action.</p><span class="link-arrow">Read more ${icon("arrow")}</span></div></a>
+      <a class="post reveal" href="/insights/#follow-up-breaks-down">${media("insight-6.jpg", "Sales team reviewing pipeline")}<div class="post__body"><span class="post__tag">Pipeline</span><h3>Why pipeline follow-up breaks down</h3><p>CRM visibility, task ownership and sales process accountability.</p><span class="link-arrow">Read more ${icon("arrow")}</span></div></a>
     </div>
   </div>
 </section>

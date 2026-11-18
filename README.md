@@ -13,16 +13,10 @@ Static site for [ampupsales.com](https://www.ampupsales.com), deployed on Netlif
 Handled by `netlify.toml`: build command `node src/build.mjs`, publish directory `dist`.
 The contact form uses Netlify Forms (form name `contact`).
 
-## Images
-Drop photos into `src/assets/img/` with these file names. Until a file exists, a branded placeholder shows.
+## Brand
+Colors come from the logo: navy `#213C4E`, slate `#536C7C`, steel `#7B949C` (tokens at the top of `src/assets/css/style.css`).
+Logos: `src/assets/img/logo.png` (light backgrounds) and `logo-light.png` (dark backgrounds).
 
-| File | Where it appears |
-|---|---|
-| `hero.jpg` | Home hero (wide, ~2400×1400) |
-| `about.jpg`, `why.jpg` | Home split sections |
-| `service-1.jpg` … `service-6.jpg` | Services page, one per service |
-| `industry-manufacturing.jpg`, `industry-healthcare.jpg`, `industry-professional-services.jpg`, `industry-saas.jpg`, `industry-education.jpg` | Industry cards and industry page heroes |
-| `insight-1.jpg` … `insight-8.jpg` | Insights cards (1–3 also on Home) |
-| `page-services.jpg`, `page-industries.jpg`, `page-work-with-us.jpg`, `page-about.jpg`, `page-insights.jpg`, `page-connect.jpg` | Interior page banners |
-| `industries-approach.jpg`, `work-with-us.jpg`, `about-team.jpg`, `about-work.jpg` | Interior split sections |
-| `og-image.jpg` | Social share image (1200×630) |
+## Images
+Photos live in `src/assets/img/photo-1.jpg` … `photo-9.jpg`. Which photo appears where is set in the `IMG` map in `src/lib.mjs`:
+change a mapping to swap a photo, or add a new file and point a slot at it.

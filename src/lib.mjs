@@ -120,9 +120,23 @@ export const INDUSTRIES = [
 // ---------------------------------------------------------------- components
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-// Image slot. Drop a file with this name into src/assets/img/ to replace the fallback.
-export const media = (file, alt = "", cls = "") =>
-  `<div class="media ${cls}"><img src="/assets/img/${file}" alt="${esc(alt)}" loading="lazy" decoding="async"><div class="media__fallback">${icon("bolt")}</div></div>`;
+// Image slots -> photo files in src/assets/img/. Change a mapping to swap a photo.
+const IMG = {
+  "hero.jpg": "photo-1.jpg", "about.jpg": "photo-2.jpg", "why.jpg": "photo-5.jpg",
+  "industry-manufacturing.jpg": "photo-7.jpg", "industry-healthcare.jpg": "photo-8.jpg",
+  "industry-professional-services.jpg": "photo-3.jpg", "industry-saas.jpg": "photo-6.jpg", "industry-education.jpg": "photo-9.jpg",
+  "industry-manufacturing-2.jpg": "photo-5.jpg", "industry-healthcare-2.jpg": "photo-3.jpg",
+  "industry-professional-services-2.jpg": "photo-9.jpg", "industry-saas-2.jpg": "photo-4.jpg", "industry-education-2.jpg": "photo-2.jpg",
+  "insight-1.jpg": "photo-4.jpg", "insight-2.jpg": "photo-3.jpg", "insight-3.jpg": "photo-5.jpg", "insight-4.jpg": "photo-1.jpg",
+  "insight-5.jpg": "photo-6.jpg", "insight-6.jpg": "photo-2.jpg", "insight-7.jpg": "photo-7.jpg", "insight-8.jpg": "photo-8.jpg",
+  "service-1.jpg": "photo-8.jpg", "service-2.jpg": "photo-2.jpg", "service-3.jpg": "photo-4.jpg",
+  "service-4.jpg": "photo-6.jpg", "service-5.jpg": "photo-9.jpg", "service-6.jpg": "photo-5.jpg",
+  "page-services.jpg": "photo-1.jpg", "page-industries.jpg": "photo-7.jpg", "page-work-with-us.jpg": "photo-9.jpg",
+  "page-about.jpg": "photo-2.jpg", "page-insights.jpg": "photo-6.jpg", "page-connect.jpg": "photo-5.jpg",
+  "industries-approach.jpg": "photo-8.jpg", "work-with-us.jpg": "photo-3.jpg", "about-team.jpg": "photo-5.jpg", "about-work.jpg": "photo-8.jpg",
+};
+export const media = (file, alt = "", cls = "", eager = false) =>
+  `<div class="media ${cls}"><img src="/assets/img/${IMG[file] || file}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"><div class="media__fallback">${icon("trend")}</div></div>`;
 
 export const btn = (href, label, style = "accent", ext = false) =>
   `<a class="btn btn--${style}" href="${href}"${ext ? ' target="_blank" rel="noopener"' : ""}>${label} ${icon("arrow")}</a>`;
@@ -134,7 +148,7 @@ export const head = (eyebrow, title, intro = "", cls = "") =>
 
 export const pageHero = ({ eyebrow, title, intro, crumbs = [], img, cta = true }) => `
 <section class="page-hero">
-  ${media(img, "")}
+  ${media(img, "", "", true)}
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? `<span>/</span><span aria-current="page">${c[0]}</span>` : `<span>/</span><a href="${c[1]}">${c[0]}</a>`).join("")}</nav>
     <span class="eyebrow">${eyebrow}</span>
@@ -235,7 +249,7 @@ const NAV = [
 ];
 
 const logo = (light = false) =>
-  `<a class="logo${light ? " logo--light" : ""}" href="/" aria-label="Amp Up Sales home"><span class="logo__mark">${icon("bolt")}</span><span>Amp Up <b>Sales</b></span></a>`;
+  `<a class="logo" href="/" aria-label="Amp Up Sales home"><img src="/assets/img/${light ? "logo-light" : "logo"}.png" alt="AmpUp" width="446" height="120"></a>`;
 
 const isActive = (item, path) => (item.href === "/" ? path === "/" : path.startsWith(item.href));
 

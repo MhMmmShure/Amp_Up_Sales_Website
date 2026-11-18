@@ -145,7 +145,7 @@ ${pageHero({ eyebrow: ind.title, title: d.hero, intro: d.intro, crumbs: [["Indus
 
 <section class="section section--soft">
   <div class="container split">
-    <div class="split__media reveal">${media(ind.img, ind.title)}
+    <div class="split__media reveal">${media(ind.img.replace(".jpg", "-2.jpg"), ind.title)}
       <div class="badge-card"><span class="ico">${icon(ind.icon)}</span><div><strong>${ind.title}</strong><small>Strategy and execution built around how your buyers buy.</small></div></div>
     </div>
     <div class="reveal">

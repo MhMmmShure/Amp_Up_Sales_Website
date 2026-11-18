@@ -8,7 +8,6 @@ const WWU_FAQ = [
   ["Do you build websites?", "Yes, with SEO structure, service and industry pages, FAQs and clear conversion paths."],
   ["Do you run outbound?", "Yes: account research, list building, email, LinkedIn, reply review, follow-up and tracking."],
   ["How involved do we need to be?", "We do the heavy lifting, but we need leadership input, subject-matter expertise, feedback and alignment to do our best work."],
-  ["Do you work with companies outside Colorado?", "Yes. We work with clients across the U.S., mostly remotely."],
 ];
 
 const workWithUs = {
