@@ -1,5 +1,6 @@
 // Zero-dependency static build: node src/build.mjs  ->  dist/
-import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, cpSync, rmSync, existsSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { layout, SITE } from "./lib.mjs";
@@ -13,11 +14,16 @@ const out = join(root, "..", "dist");
 rmSync(out, { recursive: true, force: true });
 mkdirSync(out, { recursive: true });
 
+// Cache-busting: version CSS/JS URLs by content hash so browsers always get the latest styles
+const ver = (f) => createHash("md5").update(readFileSync(join(root, "assets", f))).digest("hex").slice(0, 10);
+const cssV = ver("css/style.css"), jsV = ver("js/main.js");
+const stamp = (html) => html.replace('/assets/css/style.css"', `/assets/css/style.css?v=${cssV}"`).replace('/assets/js/main.js"', `/assets/js/main.js?v=${jsV}"`);
+
 const pages = [home, services, ...industries, ...company];
 for (const p of pages) {
   const file = p.out ? join(out, p.out) : join(out, p.path, "index.html");
   mkdirSync(dirname(file), { recursive: true });
-  writeFileSync(file, layout(p));
+  writeFileSync(file, stamp(layout(p)));
 }
 
 cpSync(join(root, "assets"), join(out, "assets"), { recursive: true });
