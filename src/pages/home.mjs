@@ -1,3 +1,4 @@
+import { PROBLEMS } from "./solutions.mjs";
 import { SITE, icon, media, btn, scheduleBtn, head, serviceCards, industryCards, contactSection, ctaBand } from "../lib.mjs";
 
 const rotate = ["Outsourced Sales Leadership", "Targeted Outbound", "Buyer-Focused Websites", "Clear Revenue Visibility"];
@@ -63,12 +64,12 @@ export default {
 
 <section class="section section--dark">
   <div class="container">
-    ${head("What we solve", "Where B2B growth usually gets stuck", "If any of these sound familiar, you're not alone. They're the most common reasons a strong offer doesn't turn into a consistent pipeline.", "center")}
-    <div class="grid grid--4">
-      <div class="feature reveal"><div class="ico">${icon("message")}</div><h3>Unclear messaging</h3><p>Buyers can't quickly tell who you help, what you solve or why you're different.</p></div>
-      <div class="feature reveal"><div class="ico">${icon("send")}</div><h3>Inconsistent outreach</h3><p>Prospecting happens in bursts, when someone has time, then stops.</p></div>
-      <div class="feature reveal"><div class="ico">${icon("refresh")}</div><h3>Weak follow-up</h3><p>Good conversations go quiet because nobody owns the next step.</p></div>
-      <div class="feature reveal"><div class="ico">${icon("flag")}</div><h3>No clear owner</h3><p>Sales and marketing sit between people, so nothing moves with urgency.</p></div>
+    <div class="section-head section-head--split reveal">
+      <div><span class="eyebrow">What we solve</span><h2>Where B2B growth usually gets stuck</h2><p class="lead">If any of these sound familiar, you're not alone. Click one to see the warning signs, a quick self-check and how to fix it.</p></div>
+      ${btn("/what-we-solve/", "All Problems", "ghost")}
+    </div>
+    <div class="grid grid--4">${PROBLEMS.map((p) => `
+      <a class="feature reveal" href="/what-we-solve/${p.slug}/"><div class="ico">${icon(p.icon)}</div><h3>${p.title}</h3><p>${p.short}</p><span class="feature__link">See the fix ${icon("arrow")}</span></a>`).join("")}
     </div>
   </div>
 </section>

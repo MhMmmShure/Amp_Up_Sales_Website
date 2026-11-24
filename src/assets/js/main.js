@@ -85,6 +85,23 @@
     items.forEach(function (el) { el.classList.add("is-in"); });
   }
 
+  // Problem self-check
+  document.querySelectorAll("[data-selfcheck]").forEach(function (box) {
+    var inputs = box.querySelectorAll("input[type=checkbox]");
+    var score = box.querySelector("[data-score]");
+    var verdict = box.querySelector("[data-verdict]");
+    var update = function () {
+      var n = 0;
+      inputs.forEach(function (i) { if (i.checked) n++; });
+      score.textContent = n + " of " + inputs.length;
+      if (n === 0) verdict.textContent = "Tick any that apply to see where you stand.";
+      else if (n <= 2) verdict.textContent = "Early warning signs. Worth tightening before they cost you deals.";
+      else if (n <= 4) verdict.innerHTML = "This is likely slowing your growth. <a href=\"/connect/\">Let's talk it through.</a>";
+      else verdict.innerHTML = "This is a priority fix. <a href=\"/connect/\">Book a conversation</a> and we'll map a plan.";
+    };
+    inputs.forEach(function (i) { i.addEventListener("change", update); });
+  });
+
   // Footer year
   document.querySelectorAll("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

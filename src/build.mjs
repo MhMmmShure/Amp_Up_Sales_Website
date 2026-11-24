@@ -8,6 +8,7 @@ import home from "./pages/home.mjs";
 import services from "./pages/services.mjs";
 import industries from "./pages/industries.mjs";
 import company from "./pages/company.mjs";
+import solutions from "./pages/solutions.mjs";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const out = join(root, "..", "dist");
@@ -19,7 +20,7 @@ const ver = (f) => createHash("md5").update(readFileSync(join(root, "assets", f)
 const cssV = ver("css/style.css"), jsV = ver("js/main.js");
 const stamp = (html) => html.replace('/assets/css/style.css"', `/assets/css/style.css?v=${cssV}"`).replace('/assets/js/main.js"', `/assets/js/main.js?v=${jsV}"`);
 
-const pages = [home, services, ...industries, ...company];
+const pages = [home, services, ...solutions, ...industries, ...company];
 for (const p of pages) {
   const file = p.out ? join(out, p.out) : join(out, p.path, "index.html");
   mkdirSync(dirname(file), { recursive: true });

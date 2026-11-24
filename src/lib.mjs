@@ -245,6 +245,7 @@ const NAV = [
   { label: "Services", href: "/services/", children: SERVICES.map((s) => ({ label: s.title, href: `/services/#${s.slug}`, icon: s.icon })) },
   { label: "Industries", href: "/industries/", children: INDUSTRIES.map((i) => ({ label: i.title, href: `/industries/${i.slug}/`, icon: i.icon })) },
   { label: "Work With Us", href: "/work-with-us/" },
+  { label: "What We Solve", href: "/what-we-solve/", drawerOnly: true },
   { label: "About", href: "/about/" },
   { label: "Insights", href: "/insights/" },
   { label: "Connect", href: "/connect/" },
@@ -271,7 +272,7 @@ const header = (path) => `
 <header class="header">
   <div class="container">
     ${logo()}
-    <nav aria-label="Main"><ul class="nav">${NAV.filter((n) => n.label !== "Connect").map((n) => `
+    <nav aria-label="Main"><ul class="nav">${NAV.filter((n) => n.label !== "Connect" && !n.drawerOnly).map((n) => `
       <li><a href="${n.href}"${isActive(n, path) ? ' class="is-active"' : ""}>${n.label}${n.children ? icon("chevron") : ""}</a>${n.children ? `
         <div class="dropdown">${n.children.map((c) => `<a href="${c.href}"><span class="ico">${icon(c.icon)}</span>${c.label}</a>`).join("")}</div>` : ""}</li>`).join("")}
     </ul></nav>
@@ -308,7 +309,7 @@ const footer = () => `
     <div><h4>Services</h4><ul>${SERVICES.map((s) => `<li><a href="/services/#${s.slug}">${s.title}</a></li>`).join("")}</ul></div>
     <div><h4>Industries</h4><ul>${INDUSTRIES.map((i) => `<li><a href="/industries/${i.slug}/">${i.title}</a></li>`).join("")}</ul></div>
     <div><h4>Company</h4><ul>
-      <li><a href="/work-with-us/">Work With Us</a></li><li><a href="/about/">About</a></li><li><a href="/insights/">Insights</a></li><li><a href="/connect/">Connect</a></li>
+      <li><a href="/what-we-solve/">What We Solve</a></li><li><a href="/work-with-us/">Work With Us</a></li><li><a href="/about/">About</a></li><li><a href="/insights/">Insights</a></li><li><a href="/connect/">Connect</a></li>
     </ul>
     <h4 style="margin-top:30px">Contact</h4>
     <ul class="footer__contact"><li>${icon("phone")}<a href="${SITE.phoneHref}">${SITE.phone}</a></li><li>${icon("mail")}<a href="mailto:${SITE.email}">${SITE.email}</a></li></ul></div>
