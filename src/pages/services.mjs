@@ -30,7 +30,8 @@ ${pageHero({ eyebrow: "Our services", title: "Sales and marketing support that a
         <span class="svc__num">0${i + 1} / 06</span>
         <h2 style="font-size:clamp(1.7rem,2.8vw,2.3rem);margin-top:10px">${s.title}</h2>
         <p class="lead">${s.body}</p>
-        <ul class="checklist checklist--2">${s.items.map((it) => `<li>${icon("check")}${it}</li>`).join("")}</ul>
+        ${s.slug === "website-seo-aeo" ? `<div class="stat-note"><strong>45%</strong><span>of B2B buyers used AI tools during a recent purchase, so your site needs content AI can understand and cite. <a href="https://www.gartner.com/en/newsroom/press-releases/2026-03-09-gartner-sales-survey-finds-67-percent-of-b2b-buyers-prefer-a-rep-free-experience" target="_blank" rel="noopener"><u>Gartner, 2026</u></a></span></div>` : ""}
+        <ul class="checklist checklist--2">${s.items.map((it) => `<li>${icon("tick")}${it}</li>`).join("")}</ul>
         <div class="for"><strong>Best for:</strong> ${s.for}</div>
         ${scheduleBtn("navy", "Talk About This Service")}
       </div>

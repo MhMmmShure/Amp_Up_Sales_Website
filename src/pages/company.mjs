@@ -28,9 +28,9 @@ ${pageHero({ eyebrow: "Work with us", title: "An outsourced team that plugs into
       <h2>Customized to where you are today</h2>
       <p class="lead">Scope depends on your goals, internal team, systems and priorities. Most clients work with us on an ongoing basis.</p>
       <ul class="checklist">
-        <li>${icon("check")}<span><strong>Supplement your team:</strong> add senior leadership and execution capacity alongside your people.</span></li>
-        <li>${icon("check")}<span><strong>Fill a gap:</strong> cover the leadership or execution role you haven't hired yet.</span></li>
-        <li>${icon("check")}<span><strong>Be your team:</strong> act as the full sales and marketing function when you don't have one.</span></li>
+        <li>${icon("tick")}<span><strong>Supplement your team:</strong> add senior leadership and execution capacity alongside your people.</span></li>
+        <li>${icon("tick")}<span><strong>Fill a gap:</strong> cover the leadership or execution role you haven't hired yet.</span></li>
+        <li>${icon("tick")}<span><strong>Be your team:</strong> act as the full sales and marketing function when you don't have one.</span></li>
       </ul>
       ${scheduleBtn("navy")}
     </div>
@@ -69,10 +69,10 @@ ${pageHero({ eyebrow: "Work with us", title: "An outsourced team that plugs into
     ${head("Fit", "Are we the right partner?", "We do our best work with teams ready to collaborate and execute consistently.", "center")}
     <div class="fit">
       <div class="card reveal"><h3>A good fit if you…</h3><ul class="checklist checklist--muted">
-        ${["Sell to B2B buyers", "Have a defined offer and a real market", "Need more consistent pipeline", "Lack execution bandwidth", "Want sales and marketing on one plan", "Need senior support without a full-time hire"].map((t) => `<li>${icon("check")}${t}</li>`).join("")}
+        ${["Sell to B2B buyers", "Have a defined offer and a real market", "Need more consistent pipeline", "Lack execution bandwidth", "Want sales and marketing on one plan", "Need senior support without a full-time hire"].map((t) => `<li>${icon("tick")}${t}</li>`).join("")}
       </ul></div>
       <div class="card card--no reveal"><h3>Probably not a fit if you…</h3><ul class="checklist checklist--muted checklist--x">
-        ${["Only need a one-time task", "Aren't ready to collaborate", "Don't have a clear product or service yet", "Want marketing with no sales accountability", "Aren't ready for consistent execution", "Want a completely hands-off vendor"].map((t) => `<li>${icon("x")}${t}</li>`).join("")}
+        ${["Only need a one-time task", "Aren't ready to collaborate", "Don't have a clear product or service yet", "Want marketing with no sales accountability", "Aren't ready for consistent execution", "Want a completely hands-off vendor"].map((t) => `<li>${icon("xmark")}${t}</li>`).join("")}
       </ul></div>
     </div>
   </div>
@@ -129,7 +129,7 @@ ${pageHero({ eyebrow: "About us", title: "Growth comes from clarity, consistency
     <div class="reveal">
       <span class="eyebrow">What we do</span>
       <h2>Everything it takes to turn a strong offer into pipeline</h2>
-      <ul class="checklist">${SERVICES.map((s) => `<li>${icon("check")}<a href="/services/#${s.slug}">${s.title}</a></li>`).join("")}</ul>
+      <ul class="checklist">${SERVICES.map((s) => `<li>${icon("tick")}<a href="/services/#${s.slug}">${s.title}</a></li>`).join("")}</ul>
       ${scheduleBtn("navy")}
     </div>
   </div>
@@ -214,7 +214,7 @@ const thanks = {
 <section class="section">
   <div class="container center" style="max-width:720px">
     <div class="card" style="padding:60px 40px">
-      <div class="ico mx-auto">${icon("check")}</div>
+      <div class="ico mx-auto">${icon("tick")}</div>
       <span class="eyebrow">Message received</span>
       <h1 style="font-size:2.4rem">Thanks, we'll be in touch soon.</h1>
       <p class="lead">We reply within one business day. Want to skip the wait? Grab a time on our calendar.</p>

@@ -110,10 +110,10 @@ ${pageHero({ eyebrow: "Industries", title: "Built for complex B2B sales", intro:
       <h2>Industry context, applied to the same proven rhythm</h2>
       <p>We learn your buyers, your market and your sales cycle first. Then we apply the same Align, Build, Execute and Optimize rhythm that keeps every engagement focused and accountable.</p>
       <ul class="checklist">
-        <li>${icon("check")}Messaging written for your buyers' roles and pain points</li>
-        <li>${icon("check")}Outreach timed to how your industry actually buys</li>
-        <li>${icon("check")}Content that proves expertise before the first call</li>
-        <li>${icon("check")}Reporting leadership can act on</li>
+        <li>${icon("tick")}Messaging written for your buyers' roles and pain points</li>
+        <li>${icon("tick")}Outreach timed to how your industry actually buys</li>
+        <li>${icon("tick")}Content that proves expertise before the first call</li>
+        <li>${icon("tick")}Reporting leadership can act on</li>
       </ul>
       ${btn("/work-with-us/", "See How We Work", "navy")}
     </div>
@@ -152,7 +152,7 @@ ${pageHero({ eyebrow: ind.title, title: d.hero, intro: d.intro, crumbs: [["Indus
       <span class="eyebrow">What changes</span>
       <h2>What working with us looks like</h2>
       <p>We bring the leadership and the hands to execute, so growth stops depending on spare time.</p>
-      <ul class="checklist">${d.outcomes.map((o) => `<li>${icon("check")}${o}</li>`).join("")}</ul>
+      <ul class="checklist">${d.outcomes.map((o) => `<li>${icon("tick")}${o}</li>`).join("")}</ul>
       ${scheduleBtn("navy")}
     </div>
   </div>

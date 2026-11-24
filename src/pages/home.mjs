@@ -17,7 +17,7 @@ export default {
   <div class="container">
     <div class="hero__content">
       <span class="eyebrow">Your outsourced sales &amp; marketing team</span>
-      <h1>Execute your B2B growth with <span class="rotator" data-rotate='${JSON.stringify(rotate)}'><span>${rotate[0]}</span></span></h1>
+      <h1>Execute your B2B growth with <span class="rotator" data-rotate>${rotate.map((r, i) => `<span${i === 0 ? ' class="is-active"' : ' aria-hidden="true"'}>${r}</span>`).join("")}</span></h1>
       <p>We help B2B companies build more disciplined sales and marketing: clear positioning, consistent pipeline and follow-up that actually happens. Strategy and execution, under one roof.</p>
       <div class="btn-row">${scheduleBtn()}${btn("/services/", "View Services", "ghost")}</div>
     </div>
@@ -73,6 +73,20 @@ export default {
   </div>
 </section>
 
+
+<section class="section">
+  <div class="container">
+    <div class="section-head section-head--split reveal">
+      <div><span class="eyebrow">The B2B buying reality</span><h2>Buyers decide before they ever talk to you</h2><p class="lead">Most of the buying journey now happens without a seller in the room. That's why messaging, content and relevant outreach matter as much as the sales call.</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><span class="stat__num">67%</span><p>of B2B buyers prefer a rep-free buying experience.</p><span class="stat__src">Source: <a href="https://www.gartner.com/en/newsroom/press-releases/2026-03-09-gartner-sales-survey-finds-67-percent-of-b2b-buyers-prefer-a-rep-free-experience" target="_blank" rel="noopener">Gartner, 2026</a></span></div>
+      <div class="stat reveal"><span class="stat__num">61%</span><p>of the way through their journey before buyers first contact a seller.</p><span class="stat__src">Source: <a href="https://6sense.com/report/buyer-experience/" target="_blank" rel="noopener">6sense, 2025</a></span></div>
+      <div class="stat reveal"><span class="stat__num">4 in 5</span><p>deals go to the vendor buyers already favored before first contact.</p><span class="stat__src">Source: <a href="https://6sense.com/report/buyer-experience/" target="_blank" rel="noopener">6sense, 2025</a></span></div>
+      <div class="stat reveal"><span class="stat__num">73%</span><p>of B2B buyers actively avoid suppliers who send irrelevant outreach.</p><span class="stat__src">Source: <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-sales-survey-finds-61-percent-of-b2b-buyers-prefer-a-rep-free-buying-experience" target="_blank" rel="noopener">Gartner, 2025</a></span></div>
+    </div>
+  </div>
+</section>
 <section class="section section--soft">
   <div class="container">
     <div class="section-head section-head--split reveal">
@@ -109,11 +123,11 @@ export default {
       <h2>Built for B2B teams with a strong offer and no time to execute</h2>
       <p>We work best with companies that already have something worth selling and need the leadership and hands to sell it consistently.</p>
       <ul class="checklist">
-        <li>${icon("check")}You sell to B2B buyers with a defined offer and a real market</li>
-        <li>${icon("check")}You need a more consistent, predictable pipeline</li>
-        <li>${icon("check")}Your team lacks bandwidth to execute what leadership plans</li>
-        <li>${icon("check")}You want sales and marketing working from one plan</li>
-        <li>${icon("check")}You need senior-level support without a full-time hire</li>
+        <li>${icon("tick")}You sell to B2B buyers with a defined offer and a real market</li>
+        <li>${icon("tick")}You need a more consistent, predictable pipeline</li>
+        <li>${icon("tick")}Your team lacks bandwidth to execute what leadership plans</li>
+        <li>${icon("tick")}You want sales and marketing working from one plan</li>
+        <li>${icon("tick")}You need senior-level support without a full-time hire</li>
       </ul>
       ${btn("/work-with-us/", "How We Work Together", "navy")}
     </div>

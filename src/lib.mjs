@@ -26,6 +26,8 @@ const P = {
   check: '<circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/>',
   x: '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
+  tick: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  xmark: '<path d="M17 7 7 17M7 7l10 10"/>',
   up: '<path d="m18 15-6-6-6 6"/>',
   target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
   funnel: '<path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/>',

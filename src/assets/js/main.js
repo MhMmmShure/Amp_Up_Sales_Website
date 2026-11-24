@@ -52,20 +52,24 @@
     });
   });
 
-  // Hero headline rotator
+  // Hero headline rotator: phrases are stacked in one grid cell (fixed height) and cross-fade
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.querySelectorAll("[data-rotate]").forEach(function (el) {
-    var words = JSON.parse(el.getAttribute("data-rotate"));
-    var span = el.querySelector("span");
+    var items = el.querySelectorAll(":scope > span");
     var i = 0;
-    if (reduce || words.length < 2) return;
+    if (reduce || items.length < 2) return;
     setInterval(function () {
-      i = (i + 1) % words.length;
-      var next = span.cloneNode(false);
-      next.textContent = words[i];
-      span.replaceWith(next);
-      span = next;
-    }, 2800);
+      var cur = items[i];
+      i = (i + 1) % items.length;
+      var next = items[i];
+      cur.classList.remove("is-active");
+      cur.classList.add("is-leaving");
+      cur.setAttribute("aria-hidden", "true");
+      next.classList.remove("is-leaving");
+      next.classList.add("is-active");
+      next.removeAttribute("aria-hidden");
+      setTimeout(function () { cur.classList.remove("is-leaving"); }, 750);
+    }, 3200);
   });
 
   // Reveal on scroll
