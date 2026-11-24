@@ -18,7 +18,12 @@ mkdirSync(out, { recursive: true });
 // Cache-busting: version CSS/JS URLs by content hash so browsers always get the latest styles
 const ver = (f) => createHash("md5").update(readFileSync(join(root, "assets", f))).digest("hex").slice(0, 10);
 const cssV = ver("css/style.css"), jsV = ver("js/main.js");
-const stamp = (html) => html.replace('/assets/css/style.css"', `/assets/css/style.css?v=${cssV}"`).replace('/assets/js/main.js"', `/assets/js/main.js?v=${jsV}"`);
+const imgV = {};
+const imgVer = (f) => (imgV[f] ??= existsSync(join(root, "assets", "img", f)) ? createHash("md5").update(readFileSync(join(root, "assets", "img", f))).digest("hex").slice(0, 10) : null);
+const stamp = (html) => html
+  .replace('/assets/css/style.css"', `/assets/css/style.css?v=${cssV}"`)
+  .replace('/assets/js/main.js"', `/assets/js/main.js?v=${jsV}"`)
+  .replace(/\/assets\/img\/([\w.-]+\.(?:jpg|png|svg|webp))(?=")/g, (m, f) => (imgVer(f) ? `${m}?v=${imgVer(f)}` : m));
 
 const pages = [home, services, ...solutions, ...industries, ...company];
 for (const p of pages) {
