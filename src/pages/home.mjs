@@ -1,5 +1,5 @@
 import { PROBLEMS } from "./solutions.mjs";
-import { SITE, icon, media, btn, scheduleBtn, head, serviceCards, industryCards, contactSection, ctaBand } from "../lib.mjs";
+import { SITE, icon, art, media, btn, scheduleBtn, head, serviceCards, industryCards, contactSection, ctaBand } from "../lib.mjs";
 
 const rotate = ["Outsourced Sales Leadership", "Targeted Outbound", "Buyer-Focused Websites", "Clear Revenue Visibility"];
 
@@ -14,13 +14,33 @@ export default {
   })}</script>`,
   body: `
 <section class="hero">
-  <div class="hero__media">${media("hero.jpg", "B2B sales and marketing team reviewing performance charts", "", true)}</div>
-  <div class="container">
+  <div class="hero__media"><div class="media media--art">${art("", 0, { iconOn: false })}</div></div>
+  <div class="container hero__grid">
     <div class="hero__content">
       <span class="eyebrow">Your outsourced sales &amp; marketing team</span>
       <h1>Execute your B2B growth with <span class="rotator" data-rotate>${rotate.map((r, i) => `<span${i === 0 ? ' class="is-active"' : ' aria-hidden="true"'}>${r}</span>`).join("")}</span></h1>
       <p>We help B2B companies build more disciplined sales and marketing: clear positioning, consistent pipeline and follow-up that actually happens. Strategy and execution, under one roof.</p>
       <div class="btn-row">${scheduleBtn()}${btn("/services/", "View Services", "ghost")}</div>
+    </div>
+    <div class="hero__visual" aria-hidden="true">
+      <div class="dash">
+        <div class="dash__head"><div><strong>Sales Report</strong><small>Sample dashboard · this quarter</small></div></div>
+        <div class="dash__kpis">
+          <div><small>Pipeline</small><b>$1.2M</b><em>&#9650; 18%</em></div>
+          <div><small>Win rate</small><b>32%</b><em>&#9650; 4 pts</em></div>
+          <div><small>Meetings</small><b>46</b><em>&#9650; 12</em></div>
+        </div>
+        <div class="dash__chart">
+          <small>Revenue by quarter</small>
+          <div class="dash__bars">${[38, 52, 64, 86].map((h, i) => `<span style="--h:${h}%"><i></i><u>Q${i + 1}</u></span>`).join("")}</div>
+        </div>
+        <div class="dash__stages">
+          <small>Pipeline by stage</small>
+          ${[["Prospecting", 40], ["Qualified", 25], ["Proposal", 20], ["Negotiation", 15]].map(([n, v]) => `<div><span>${n}</span><i style="--w:${v * 2.2}%"></i><b>${v}%</b></div>`).join("")}
+        </div>
+      </div>
+      <div class="dash-float dash-float--a"><span class="ico">${icon("tick")}</span><div><strong>Follow-up on track</strong><small>12 deals moved forward</small></div></div>
+      <div class="dash-float dash-float--b"><span class="ico">${icon("send")}</span><div><strong>Outbound live</strong><small>3 campaigns running</small></div></div>
     </div>
   </div>
 </section>

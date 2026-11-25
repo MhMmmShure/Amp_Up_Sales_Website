@@ -18,5 +18,8 @@ Colors come from the logo: navy `#213C4E`, slate `#536C7C`, steel `#7B949C` (tok
 Logos: `src/assets/img/logo.png` (light backgrounds) and `logo-light.png` (dark backgrounds).
 
 ## Images
-Photos live in `src/assets/img/photo-1.jpg` … `photo-9.jpg`. Which photo appears where is set in the `IMG` map in `src/lib.mjs`:
-change a mapping to swap a photo, or add a new file and point a slot at it.
+- **Brand graphics** (home hero, page banners, services, industries) are drawn in SVG by `art()` in `src/lib.mjs`, using the logo chevrons and palette. The home hero dashboard is HTML/CSS in `src/pages/home.mjs`.
+- **Photos** (`photo-2…9.jpg`, real stock supplied by the client) appear only in a few About / Work With Us / Home split sections.
+- **Insight graphics** are `graphic-0…10.jpg`.
+- Which slot shows what is set in the `IMG` map in `src/lib.mjs`: `"art:<icon>:<layout>"` renders a brand graphic, anything else is a file in `src/assets/img/`.
+- No AI-generated photos are used on the site.

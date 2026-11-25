@@ -122,24 +122,59 @@ export const INDUSTRIES = [
 // ---------------------------------------------------------------- components
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-// Image slots -> photo files in src/assets/img/. Change a mapping to swap a photo.
+// ---------------------------------------------------------------- brand art
+// On-brand graphics drawn in SVG from the AmpUp logo chevrons and palette (no photos).
+const CHEV = (x, y, sc, color, op = 1, w = 9) =>
+  `<g transform="translate(${x} ${y}) scale(${sc})" opacity="${op}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4 L78 7 L75 52"/><path d="M0 30 L56 33 L53 78" transform="translate(-14 14)"/></g>`;
+const LAYOUTS = [
+  { ch: [[520, 40, 3.2, "#7b949c", .22], [590, 360, 1.6, "#536c7c", .45]], rings: [[120, 520, 180], [700, 120, 90]], icon: [400, 300] },
+  { ch: [[40, 330, 2.6, "#536c7c", .4], [560, 60, 1.8, "#7b949c", .3]], rings: [[690, 500, 200], [140, 90, 70]], icon: [420, 290] },
+  { ch: [[470, 300, 3.6, "#536c7c", .3], [80, 60, 1.3, "#7b949c", .5]], rings: [[160, 470, 120], [640, 140, 150]], icon: [390, 280] },
+  { ch: [[-60, 20, 3.4, "#7b949c", .18], [600, 380, 1.4, "#a7bcc3", .35]], rings: [[650, 200, 170], [180, 520, 90]], icon: [410, 300] },
+  { ch: [[540, -30, 2.4, "#536c7c", .45], [60, 400, 1.9, "#7b949c", .3]], rings: [[120, 140, 140], [720, 520, 130]], icon: [400, 310] },
+  { ch: [[300, 380, 2.2, "#7b949c", .28], [620, 40, 1.7, "#536c7c", .5]], rings: [[100, 300, 200], [700, 470, 80]], icon: [400, 270] },
+];
+let artId = 0;
+export const art = (iconName, seed = 0, { iconOn = true } = {}) => {
+  const L = LAYOUTS[seed % LAYOUTS.length];
+  const id = `a${artId++}`;
+  const [ix, iy] = L.icon;
+  return `<svg class="art" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#28495f"/><stop offset="1" stop-color="#132634"/></linearGradient>
+  <pattern id="${id}d" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#a7bcc3" opacity=".16"/></pattern>
+  <radialGradient id="${id}r" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#7b949c" stop-opacity=".28"/><stop offset="1" stop-color="#7b949c" stop-opacity="0"/></radialGradient></defs>
+  <rect width="800" height="600" fill="url(#${id}g)"/><rect width="800" height="600" fill="url(#${id}d)"/>
+  <circle cx="${ix}" cy="${iy}" r="240" fill="url(#${id}r)"/>
+  ${L.rings.map(([cx, cy, r]) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#a7bcc3" stroke-opacity=".14" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="${r * .62}" fill="none" stroke="#a7bcc3" stroke-opacity=".08" stroke-width="2" stroke-dasharray="4 10"/>`).join("")}
+  ${L.ch.map(([x, y, sc, c, o]) => CHEV(x, y, sc, c, o)).join("")}
+  ${iconOn ? `<rect x="${ix - 78}" y="${iy - 78}" width="156" height="156" rx="38" fill="#ffffff" fill-opacity=".08" stroke="#a7bcc3" stroke-opacity=".35" stroke-width="2"/>
+  <svg x="${ix - 44}" y="${iy - 44}" width="88" height="88" viewBox="0 0 24 24" fill="none" stroke="#d3e0e4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${P[iconName] || P.trend}</svg>
+  ${CHEV(ix + 52, iy - 120, .55, "#a7bcc3", .9, 10)}` : ""}
+</svg>`;
+};
+
+// Image slots. "art:<icon>:<seed>" renders a brand graphic; anything else is a file in src/assets/img/.
 const IMG = {
-  "hero.jpg": "photo-1.jpg", "about.jpg": "photo-2.jpg", "why.jpg": "photo-5.jpg",
-  "industry-manufacturing.jpg": "industry-photo-0.jpg", "industry-healthcare.jpg": "industry-photo-2.jpg",
-  "industry-professional-services.jpg": "industry-photo-4.jpg", "industry-saas.jpg": "industry-photo-6.jpg", "industry-education.jpg": "industry-photo-8.jpg",
-  "industry-manufacturing-2.jpg": "industry-photo-1.jpg", "industry-healthcare-2.jpg": "industry-photo-3.jpg",
-  "industry-professional-services-2.jpg": "industry-photo-5.jpg", "industry-saas-2.jpg": "industry-photo-7.jpg", "industry-education-2.jpg": "industry-photo-9.jpg",
+  "about.jpg": "photo-2.jpg", "why.jpg": "photo-5.jpg",
+  "industry-manufacturing.jpg": "art:factory:0", "industry-healthcare.jpg": "art:health:1",
+  "industry-professional-services.jpg": "art:briefcase:2", "industry-saas.jpg": "art:cloud:3", "industry-education.jpg": "art:cap:4",
+  "industry-manufacturing-2.jpg": "art:funnel:5", "industry-healthcare-2.jpg": "art:shield:0",
+  "industry-professional-services-2.jpg": "art:pen:1", "industry-saas-2.jpg": "art:trend:2", "industry-education-2.jpg": "art:calendar:3",
   "home-insight-1.jpg": "graphic-0.jpg", "home-insight-2.jpg": "graphic-1.jpg", "home-insight-3.jpg": "graphic-2.jpg",
   "insight-1.jpg": "graphic-3.jpg", "insight-2.jpg": "graphic-4.jpg", "insight-3.jpg": "graphic-5.jpg", "insight-4.jpg": "graphic-6.jpg",
   "insight-5.jpg": "graphic-7.jpg", "insight-6.jpg": "graphic-8.jpg", "insight-7.jpg": "graphic-9.jpg", "insight-8.jpg": "graphic-10.jpg",
-  "service-1.jpg": "photo-8.jpg", "service-2.jpg": "photo-2.jpg", "service-3.jpg": "photo-4.jpg",
-  "service-4.jpg": "photo-6.jpg", "service-5.jpg": "photo-9.jpg", "service-6.jpg": "photo-5.jpg",
-  "page-services.jpg": "photo-1.jpg", "page-industries.jpg": "photo-7.jpg", "page-work-with-us.jpg": "photo-9.jpg",
-  "page-about.jpg": "photo-2.jpg", "page-insights.jpg": "photo-6.jpg", "page-connect.jpg": "photo-5.jpg",
-  "industries-approach.jpg": "photo-8.jpg", "work-with-us.jpg": "photo-3.jpg", "about-team.jpg": "photo-5.jpg", "about-work.jpg": "photo-8.jpg",
+  "service-1.jpg": "art:users:0", "service-2.jpg": "art:compass:1", "service-3.jpg": "art:send:2",
+  "service-4.jpg": "art:globe:3", "service-5.jpg": "art:pen:4", "service-6.jpg": "art:chart:5",
+  "industries-approach.jpg": "art:layers:4", "work-with-us.jpg": "photo-3.jpg", "about-team.jpg": "photo-5.jpg", "about-work.jpg": "photo-8.jpg",
 };
-export const media = (file, alt = "", cls = "", eager = false) =>
-  `<div class="media ${cls}"><img src="/assets/img/${IMG[file] || file}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"><div class="media__fallback">${icon("trend")}</div></div>`;
+export const media = (file, alt = "", cls = "", eager = false) => {
+  const src = IMG[file] || file;
+  if (src.startsWith("art:")) {
+    const [, ic, seed] = src.split(":");
+    return `<div class="media media--art ${cls}">${art(ic, Number(seed))}</div>`;
+  }
+  return `<div class="media ${cls}"><img src="/assets/img/${src}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"><div class="media__fallback">${icon("trend")}</div></div>`;
+};
 
 export const btn = (href, label, style = "accent", ext = false) =>
   `<a class="btn btn--${style}" href="${href}"${ext ? ' target="_blank" rel="noopener"' : ""}>${label} ${icon("arrow")}</a>`;
@@ -149,9 +184,10 @@ export const scheduleBtn = (style = "accent", label = "Schedule a Conversation")
 export const head = (eyebrow, title, intro = "", cls = "") =>
   `<div class="section-head ${cls} reveal"><span class="eyebrow">${eyebrow}</span><h2>${title}</h2>${intro ? `<p class="lead">${intro}</p>` : ""}</div>`;
 
+const heroSeed = (t) => [...t].reduce((a, c) => a + c.charCodeAt(0), 0) % 6;
 export const pageHero = ({ eyebrow, title, intro, crumbs = [], img, cta = true }) => `
 <section class="page-hero">
-  ${media(img, "", "", true)}
+  <div class="media media--art">${art("", heroSeed(title), { iconOn: false })}</div>
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a>${crumbs.map((c, i) => i === crumbs.length - 1 ? `<span>/</span><span aria-current="page">${c[0]}</span>` : `<span>/</span><a href="${c[1]}">${c[0]}</a>`).join("")}</nav>
     <span class="eyebrow">${eyebrow}</span>

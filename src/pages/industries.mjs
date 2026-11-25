@@ -1,6 +1,7 @@
 import { INDUSTRIES, SERVICES, icon, media, btn, scheduleBtn, head, pageHero, faq, faqSchema, ctaBand, industryCards, contactForm } from "../lib.mjs";
 
 const svc = (slug) => SERVICES.find((s) => s.slug === slug);
+const lc = (t) => t.replace(/\b(?!SaaS\b)\w+/g, (w) => w.toLowerCase());
 
 const DETAIL = {
   "manufacturing-distribution": {
@@ -136,7 +137,7 @@ ${pageHero({ eyebrow: ind.title, title: d.hero, intro: d.intro, crumbs: [["Indus
 
 <section class="section">
   <div class="container">
-    ${head("The challenge", `What holds ${ind.title.toLowerCase()} growth back`, "", "center")}
+    ${head("The challenge", `What holds ${lc(ind.title)} growth back`, "", "center")}
     <div class="grid grid--4">${d.challenges.map(([t, p], i) => `
       <article class="card reveal"><span class="card__num">0${i + 1}</span><div class="ico">${icon(["target", "message", "search", "refresh"][i])}</div><h3>${t}</h3><p>${p}</p></article>`).join("")}
     </div>
@@ -183,7 +184,7 @@ ${pageHero({ eyebrow: ind.title, title: d.hero, intro: d.intro, crumbs: [["Indus
         <a class="card reveal" href="/industries/${o.slug}/" style="padding:24px"><div class="ico" style="margin-bottom:14px">${icon(o.icon)}</div><h3 style="font-size:1.05rem;margin:0">${o.title}</h3></a>`).join("")}
       </div>
     </div>
-    ${contactForm(`Talk to us about ${ind.title.toLowerCase()} growth`)}
+    ${contactForm(`Talk to us about ${lc(ind.title)} growth`)}
   </div>
 </section>
 ${ctaBand()}
